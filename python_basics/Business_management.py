@@ -203,11 +203,15 @@ def edit_name():
      clear()
      global name_of_business
      while True:
-        new_bussiness_name = input(f"{DARK_WHITE}Enter new name of your business: ")
+        new_bussiness_name = input(f"{DARK_WHITE} \nEnter new name of your business: ")
         if new_bussiness_name == name_of_business:
             clear()
-            print(f"{new_bussiness_name} is Already the name of you business!\n")
-            continue
+            choice = input(f"{new_bussiness_name} was already the name of you business! do you want  keep it Y/N: ").lower()
+            if choice =="y":
+                clear()
+                menu()
+            else:
+                continue
         else:
             name_of_business = new_bussiness_name
             message.append(f"{get_current_time()} Name of business changed to '{new_bussiness_name}'.")
@@ -296,7 +300,7 @@ def goods():
                             total = cost * kg
                             balance += total
                             clear()
-                            print(f"\n{DARK_YELLOW}{get_current_time()} You sold {kg} kilos of {choice} at a cost of {cost} per Kg. Your new balance is {balance:.2f} FRW.")
+                            print(f"\n{DARK_YELLOW}{get_current_time()} You sold {kg} kilos of {choice} at a cost of {cost} per Kg Total cost was {total}. Your new balance is {balance:.2f} FRW.")
                             message.append(f"{get_current_time()} You sold {kg} kilos of {choice} at a cost of {cost} FRW per Kg. Your new balance is {balance:.2f} FRW.")
                             goods()  # Exit the inner selling loop
                     except ValueError:
