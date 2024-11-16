@@ -17,3 +17,5 @@ def chat():
         output += emojis.get(word, word) + " "
     
     print(output)
+
+chat()

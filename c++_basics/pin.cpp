@@ -9,7 +9,7 @@ int main()
     cout<<"\n\n                                                          Password: ";
     cin>>pin;
     cout<<"\n "<<endl;
-    if(pin != 1234 || user !="Mutangana")
+    if(pin != 1234 || user !="Joe")
     {
         cout<<"\n                                                        Invalid username or password\n\n"<<endl;
     }
