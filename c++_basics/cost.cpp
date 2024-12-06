@@ -43,7 +43,7 @@ while (true)
         cout << "Invalid choice!"<<endl;
      }
      allcost=total1+total2;
-     cout<<"The both cost is:" << allcost <<endl;
+     cout<<"Total cost is:" << allcost <<endl;
 }
         return 0;
     }

@@ -33,14 +33,14 @@ def clear():
     _=os.system("clear")
 
 def current_balance():
-    print (f"{DARK_YELLOW}Your current balance is {balance:.2f}FRW {RESET}")
+    print (f"\nYour current balance is {balance:.2f}FRW ")
 
 def get_current_time():
     return time.strftime("%d/%m/%Y %H:%M:%S")
 
 
 def print_uppercase(message):
-    print(f"{DARK_BLUE}\n{message.upper()}{RESET}\n")
+    print(f"\n{message.upper()}\n")
 
 def Start_business():
     global message
@@ -52,14 +52,14 @@ def Start_business():
     stock = []
 
 
-    print_uppercase("Welcome to business zone! we help you to start your business You should start by naming your business.")
+    print_uppercase("\nWelcome to business zone! we help you to start your business You should start by naming your business.")
     
     while True:
-        name_of_business = input(f"\n{Fore.YELLOW}Name your business: ").strip()
+        name_of_business = input(f"\nName your business: ").strip()
         
         if not name_of_business:
             clear()
-            print(f"{DARK_RED}Business must have a name!{RESET}")
+            print(f"Business must have a name!")
             continue  # Restart the loop
 
         message.append(f"{get_current_time()} You created a business called {name_of_business}.")
@@ -69,27 +69,27 @@ def Start_business():
 def add_goods():
     clear()
     while True:
-        list_items = input(f"\n{DARK_WHITE}What would you like to add in stock of {name_of_business}?: ").strip().upper()
+        list_items = input(f"\nWhat would you like to add in {name_of_business}'s stock?: ").strip().upper()
         if not list_items:
              clear()
-             print(f"{DARK_RED}Item cannot be empty. Please add a valid item.")
+             print(f"Item cannot be empty. Please add a valid item.")
              continue
         
         if list_items in stock:
             clear()
-            print(f"\n{DARK_RED}{list_items} already exist!{RESET}")
+            print(f"\n{list_items} already exist!")
             continue
         
         if list_items:  # Check if input is not empty
             stock.append(list_items)
             message.append(f"{get_current_time()} You added '{list_items}' to the stock.")
         else:
-            print(f"{DARK_RED}Item cannot be empty. Please add a valid item.")
+            print(f"Item cannot be empty. Please add a valid item.")
         clear()
         while True:
 
             
-            choice = input(f"\n{DARK_BLUE}Do you want to add more items to stock? (Y/N): ").lower()
+            choice = input(f"\nDo you want to add more items to stock? (Y/N): ").lower()
             if choice == "y":
                 clear()
                 break # Stay in the loop to add more items
@@ -99,23 +99,24 @@ def add_goods():
                 return  # Exit the loop
             else:
                 clear()
-                print(f"\n{Fore.RED}Invalid choice! Please enter Y or N.")
+                print(f"\nInvalid choice! Please enter Y or N.")
 
 
 
 def stocks():
     clear()
     while True:
-        print(f"{UNDERLINE}{Fore.GREEN}\nStock statement:{RESET}\n")
+        print(f"{UNDERLINE}\nStock statement:{RESET}\n")
         if stock:
             for index, entry in enumerate(stock, start=1):  # Start numbering from 1
-                print(f"{Fore.WHITE}{index}. {entry}")
-            choice = input("\nDo you want to clear Stock Y/N or press 'A' to add item in the stock. to remove item in stock press 'R': ").lower()
+                print(f"{index}. {entry}")
+            choice = input("\nDo you want to clear Stock Y/N?  Press 'A' to add item in the stock. Press 'R' to remove item in stock: ").lower()
             if choice == "y":
                 if stock:
                     stock.clear()
                     clear()
-                    choice = input(f"\n{DARK_GREEN}Stock cleared succefully. would you like to add items in stock? Y/N or 'M' back to menu:{RESET} ").lower()                    
+                    choice = input(f"\nStock cleared succefully. would you like to add items in stock? Y/N or 'M' back to menu: ").lower()   
+                    message.append(f"{get_current_time()} Stock cleared .")                 
                     if choice == "y":
                         add_goods()
                     elif choice== "m":
@@ -125,7 +126,7 @@ def stocks():
                         clear()
                         goods()
                 else:
-                    choice = input(f"\n{DARK_WHITE}Nothing to  clear. would you like to add items in stock? Y/N: {RESET}").lower()
+                    choice = input(f"\nNothing to  clear. would you like to add items in stock? Y/N: ").lower()
 
                     if choice == "y":
                         add_goods()
@@ -141,9 +142,9 @@ def stocks():
                 remove_item()
             else:
                 clear()
-                print(f"{DARK_RED}Invalid input!{RESET}")     
+                print(f"Invalid input!")     
         else:
-            choice = input(f"\n{DARK_BLUE}No items in stock. would you like to add items in stock? Y/N:{RESET} ").lower()
+            choice = input(f"\nNo items in stock. would you like to add items in stock? Y/N: ").lower()
             if choice == "y":
                 add_goods()
             else:
@@ -153,11 +154,11 @@ def stocks():
 def remove_item():
     clear()
     while True:
-        print(f"{UNDERLINE}{DARK_RED}Deletion process:\n{RESET}")
+        print(f"\n{UNDERLINE}{DARK_RED}Deletion process:\n{RESET}")
         if stock:
             for index, entry in enumerate(stock, start=1):
-                print(f"{DARK_WHITE}{index}. {entry}{RESET}")
-            choice = input("\nEnter item you want to remove: ").upper()
+                print(f"{index}. {entry}")
+            choice = input("\nEnter item you want to remove. Press 'B' to back: ").upper()
 
             if choice.isdigit():
                 index = int(choice) - 1  # Convert to zero-based index
@@ -165,28 +166,36 @@ def remove_item():
                     choice = stock[index]  # Get the actual item from stock
                     stock.remove(choice)
                     clear()
-                    print(f"\n{DARK_YELLOW}'{choice}' Removed succefully!{RESET}")
+                    print(f"\n'{choice}' Removed succefully!")
                     message.append(f"{get_current_time()} '{choice}' was removed from stock.")
                     break
+            
+                else:
+                    clear()
+                    print("Item doesn't Exist!")
+                    continue
+            elif choice == "B":
+                stocks()
             else:
                 clear()
-                print(f"\n{DARK_RED}Item does not exist! Please select a valid number.{RESET}")
+                print(f"\nInavild Value! Please select a valid number.")
 
 def messages():
     clear()
     while True:
-         print(f"\n{UNDERLINE}{DARK_GREEN}Messages:\n{RESET}")
+         print(f"\n{UNDERLINE}Messages:\n{RESET}")
          if message:
              for entry in message:
                  print(entry)
-             choice = input(f"{DARK_WHITE}\n1. Back\n2. Creal messages\n\n> ").lower()
+             choice = input(f"\n1. Back\n2. Creal messages\n\n> ").lower()
              if choice == "1":  
                 clear()             
                 menu()
              elif choice == "2":
                 message.clear()
                 clear()
-                print(f"\n{DARK_GREEN}Message cleared succefully!")
+                print(f"\nMessage cleared succefully!")
+            
                 continue
              else:
                  clear()
@@ -203,7 +212,13 @@ def edit_name():
      clear()
      global name_of_business
      while True:
-        new_bussiness_name = input(f"{DARK_WHITE} \nEnter new name of your business: ")
+        print(f"\n{UNDERLINE} Bussiness Rename.\n{RESET}")
+        new_bussiness_name = input(f" \nEnter new name of your business: ").strip()
+        if not new_bussiness_name:
+            clear()
+            print("Please write something!\n")
+            continue
+            
         if new_bussiness_name == name_of_business:
             clear()
             choice = input(f"{new_bussiness_name} was already the name of you business! do you want  keep it Y/N: ").lower()
@@ -216,14 +231,14 @@ def edit_name():
             name_of_business = new_bussiness_name
             message.append(f"{get_current_time()} Name of business changed to '{new_bussiness_name}'.")
             clear()
-            print(f"{DARK_GREEN}Name changed successfully!{RESET}")
+            print(f"Name changed successfully!")
             menu()
                     
 def menu():
     
     while True:
-        print(f"\n{UNDERLINE}{DARK_GREEN}{name_of_business} Status: {RESET}\n")
-        choice = input(f"{Fore.WHITE}1. Stock\n2. Message\n3. Edit name of your business\n4. Back to your goods.\n5. Balance\n\n{RESET}> ").strip().lower()
+        print(f"\n{UNDERLINE}{name_of_business} Status: {RESET}\n")
+        choice = input(f"1. Stock\n2. Message\n3. Edit name of your business\n4. Back to your goods.\n5. Balance\n\n> ").strip().lower()
         
         if choice == "1":
             stocks()
@@ -240,23 +255,24 @@ def menu():
             continue
         else:
             clear()
-            print(f"\n{DARK_RED} Wrong choice! Please select a valid option.{RESET}\n")
+            print(f"\n Wrong choice! Please select a valid option.\n")
 
 def goods():
     global balance
     while True:
-        print(f"\n{UNDERLINE}{DARK_GREEN}{name_of_business} available goods.{RESET}\n")
+        print(f"\n{UNDERLINE}{name_of_business}'s Business available goods.{RESET}\n")
         if stock:
             for index, item in enumerate(stock, start=1):  # Start numbering from 1
-                print(f"{Fore.WHITE}{index}. {item}")
+                print(f"{index}. {item}")
                 
-            choice = input(f"{Fore.BLUE}\nSelect an item by number or check Menu by pressing 'M': {RESET}").strip()
+            choice = input(f"\nSelect an item by number or check Menu by pressing 'M': ").strip()
             
             if choice.upper() == "M":
                 clear()
                 menu()
                 continue
-            if choice.upper() =="EXIT":
+            if choice.upper() =="Q" or choice.upper() =="E":
+                print(f"\n Business Exited by '{choice}'...\n")
                 sys.exit()
             
             # Check if the input is a digit and within range
@@ -266,11 +282,11 @@ def goods():
                     choice = stock[index]  # Get the actual item from stock
                 else:
                     clear()
-                    print(f"\n{DARK_RED}Item does not exist! Please select a valid number.{RESET}")
+                    print(f"\nItem does not exist! Please select a valid number.")
                     continue
             else:
                 clear()
-                print(f"\n{DARK_RED}Invalid input! Please enter a valid input.{RESET}")
+                print(f"\nInvalid input! Please enter a valid input.")
                 continue
             
             # Now we can proceed with selling the item
@@ -281,12 +297,12 @@ def goods():
                     cost = float(input(f"\nHow much is {choice} per Kilo?: "))
                     if cost <= 0:
                         clear()
-                        print(f"{DARK_RED}Cost must be greater than 0!{RESET}")
+                        print(f"Cost must be greater than 0!")
                         continue
                 except ValueError:
                         clear()
     
-                        print(f"\n{DARK_RED}Invalid input! Please enter numeric values{RESET}.")
+                        print(f"\nInvalid input! Please enter numeric values.")
                         continue
 
                 while True:
@@ -294,24 +310,24 @@ def goods():
                         kg = float(input(f"\nHow many kilos of {choice} do you want?: "))
                         if kg <= 0:
                             clear()
-                            print(f"{DARK_RED}\nKilos cannot be less than or equal to 0!{RESET}")
+                            print(f"\nKilos cannot be less than or equal to 0!")
                             continue
                         else:
                             total = cost * kg
                             balance += total
                             clear()
-                            print(f"\n{DARK_YELLOW}{get_current_time()} You sold {kg} kilos of {choice} at a cost of {cost} per Kg Total cost was {total}. Your new balance is {balance:.2f} FRW.")
+                            print(f"\n{get_current_time()} You sold {kg} kilos of {choice} at a cost of {cost} per Kg Total cost was {total}. Your new balance is {balance:.2f} FRW.")
                             message.append(f"{get_current_time()} You sold {kg} kilos of {choice} at a cost of {cost} FRW per Kg. Your new balance is {balance:.2f} FRW.")
                             goods()  # Exit the inner selling loop
                     except ValueError:
                         clear()
-                        print(f"\n{DARK_RED}Invalid input! Please enter numeric values.{RESET}")
+                        print(f"\nInvalid input! Please enter numeric values.")
                         continue
 
            
 
         else:
-            choice = input(f"{DARK_RED}No goods available. Would you like to add some goods (Y/N): ").lower()
+            choice = input(f"No goods available. Would you like to add some goods (Y/N): ").lower()
             if choice == "y":
                 add_goods()
             else:

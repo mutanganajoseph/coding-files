@@ -52,10 +52,10 @@ def main():
          print('************************** \n')
 
 
-         bet = input("place your bet amount: $")
+         bet = input("place your bet amount:$ ")
 
          if not bet.isdigit():
-            print("\nPlease Enter Valid number \n")
+            print("\nPlease Enter Valid value \n")
             continue
 
          bet = int(bet)

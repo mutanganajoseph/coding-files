@@ -5,7 +5,7 @@
 #include <thread>
 #include <cstdlib>
 #include <algorithm> //to tarnasform to Uppercase
-#include <iomanip>//For Put local time
+#include <iomanip>//For Put local time & setprecision
 
 
 using namespace std;
@@ -21,17 +21,19 @@ class Network_providers{
 public:
     string sim1, sim2;
     string Sim_mt, Sim_air;
+    string name;
     
 int count=0;
 float mtn_airtime_balance, airtel_airtime_balance;
-float MoMo_account=7500, amount=0,fee=0;
+float MoMo_account=500, amount=0,fee=0;
 string number,choice;
 
- time_t joe =time(0);
+  
+   time_t joe =time(0);
    char* currentTime = ctime(&joe);
 
-time_t now=time(0);
- tm* localTime= localtime(&now);
+    time_t now=time(0);
+    tm* localTime= localtime(&now);
 
 
 void timer(){
@@ -242,7 +244,7 @@ void Sim() {
 //while airtel is only valid sim
 void sim_airtel() {
    
-   cout << "\n> ";
+   cout << "Only *182# Or *131# Are Allowed. \n\n> ";
    cin >> choice;
    system("clear");
    if (choice == "*182#") {
@@ -264,8 +266,8 @@ void sim_airtel() {
 
 void sim_mtn() {
    int count = 0;
-   
-   cout << "\n> ";
+   cout<<"";
+   cout << "Only *182# Or *131# Are Allowed. \n\n> ";
    cin >> choice;
    system("clear");
    if (choice == "*182#") {
@@ -286,7 +288,7 @@ void sim_mtn() {
 }
 
 void sim_airtel_mtn() {
-   cout << "\n> ";
+   cout << "Only *182# Or *131# Are Allowed. \n\n> ";
    cin >> choice;
   system("clear");
       wait_timer();
@@ -349,7 +351,7 @@ void sim_airtel_mtn() {
 void sim_mtn_mtn() {
    float sim_mtn_balance=200;
     
-   cout << "\n> ";
+   cout << "Only *182# Or *131# Are Allowed. \n\n> ";
    cin >> choice;
    system("clear");
    if (choice == "*182#") {
@@ -392,7 +394,7 @@ void sim_mtn_mtn() {
           wait_timer();
          cout << "\n";
         
-         cout<<"MTN airtime is " <<sim_mtn_balance<<"FRW.\n\n";
+         cout<<"Balance: "<< fixed << setprecision(2)<<sim_mtn_balance<<"F.\n\n";
       }
       else {
          system("clear");
@@ -410,7 +412,7 @@ void sim_mtn_mtn() {
 void sim_airtel_airtel() {
    float sim_airtel_balance=300;
     system("clear");
-   cout << "\n> ";
+   cout << "Only *182# Or *131# Are Allowed. \n\n> ";
    cin >> choice;
    system("clear");
    if (choice == "*182#") {
@@ -452,7 +454,7 @@ void sim_airtel_airtel() {
       else if (choice == "2") {
          cout << "\n";
          wait_timer();
-         cout<<"Airtel Airtime balance is " << sim_airtel_balance<<"FRW.\n\n";
+         cout<<"Balance: " << fixed << setprecision(2)<< sim_airtel_balance<<"F.\n\n";
       }
       else {
          system("clear");
@@ -470,7 +472,7 @@ void sim_airtel_airtel() {
 
 
 void sim_mtn_airtel() {
-   cout << "\n> ";
+   cout << "Only *182# Or *131# Are Allowed. \n\n> ";
    cin >> choice;
    system("clear");
    if (choice == "*182#") {
@@ -765,11 +767,17 @@ void mtn_send_money() {
 
 void mtn_recipient() {
   
+  
     
    cout << "\nEnter recipient 07*******\n\n> ";
         cin >> number;
+
+        if(number == "0780920096"){
+         name = "Mutangana Joseph";
+        }
+
          bool all_digits = true;
-    bool has_letters = false;
+         bool has_letters = false;
     for (char c : number) {
         if (!isdigit(c)) {
             all_digits = false;
@@ -781,7 +789,7 @@ void mtn_recipient() {
      if (has_letters) {
        system("clear");
        wait_timer();  
-        cout << "\nError: Input contains letters! ("<<number<<") " <<put_time(localTime, "%H:%M:%S")<<".\n\n"<< endl;
+        cout << "\nError: Input contains letters! ("<<number<<") "<<".\n\n"<< endl;
         mtn_recipient();
     }
         
@@ -801,7 +809,7 @@ void MoMo_amount() {
     while (true) {
         system("clear"); 
         wait_timer();   
-        cout << "\nEnter amount to send to " << number << ".\n\n > ";
+        cout << "\nEnter amount to send to (" << number <<") " << name << ".\n\n > ";
         cin >> amount;   
         system("clear"); 
         wait_timer();   
@@ -821,19 +829,19 @@ void MoMo_amount() {
         
         if (amount <= 1000) {
             fee = 20;
-        } else if (amount <= 3000) {
+        } else if (amount <= 10000) {
             fee = 100;
-        } else if (amount <= 4999) {
-            fee = 150;
-        } else if (amount >= 5000) {
+        } else if (amount <= 15000) {
             fee = 250;
+        } else if (amount >= 50000) {
+            fee = 350;
         }
 
         
         MoMo_account -= (amount + fee); 
         wait_timer();
         system("clear");
-        cout << "\nYou entered " << amount << " FRw. Fee is " << fee << " FRW. Money will be sent to " << number << ".\n";
+        cout << "\nYou entered " << fixed << setprecision(2)<< amount << "FRW. Fee is " << fixed << setprecision(2)<< fee << "FRW. Money will be sent to ("<< number <<") " <<name << ".\n";
 
         
         if (amount > 0) {
@@ -909,7 +917,7 @@ void mtn_pin(){
 
        system("clear");
        wait_timer();
-      cout<<"\n\n   Money of "<<amount<<"FRW. Transferd succefully at: (" << currentTime <<"). fee was "<<fee<<"FRW. Your new balance is "<<MoMo_account<<"FRW.Thank you for using MTN.\n\n"; 
+      cout<<"\n\n   Money of "<<amount<<"FRW. Transferd succefully to " << name << "(" << number<<") at: " <<put_time(localTime, "%d-%m-%y %H:%M:%S")<<". Fee was "<<fee<<"FRW. Your new balance is "<<MoMo_account<<"FRW.Thank you for using MTN.\n\n"; 
    }
   
 }
@@ -1037,7 +1045,7 @@ void mtn_airtime(){
    system("clear");
    float mtn_airtime_balance=120;
    wait_timer();
-   cout<<"\nMTN Airtime Balance is FRW"<<mtn_airtime_balance<<".\n\n";
+   cout<<"\nBalance: "<<fixed << setprecision(2)<<mtn_airtime_balance<<"F.\n\n";
     
 }
 
@@ -1047,7 +1055,7 @@ void airtel_airtime(){
   system("clear");
    float airtel_airtime_balance=150;
    wait_timer();
-   cout<<"\nYour Airtel airtime Balance is FRW"<<airtel_airtime_balance<<".\n\n";
+   cout<<"\nBalance: "<< fixed << setprecision(2)<<airtel_airtime_balance<<"F.\n\n";
    
 }
 };
@@ -1056,6 +1064,6 @@ void airtel_airtime(){
 int main(){
    Network_providers open;
    system("clear");
-     open.Sim();
+     open.mtn_pin();
   
 }

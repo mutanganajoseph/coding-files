@@ -791,32 +791,19 @@ import time
 import random
 import string
 
-def generate_password(length, use_special_chars):
+def generate_password(length):
     # Create a base password store
-    password_store = string.ascii_letters + string.digits  # Base characters: letters and digits
+    password_store = string.ascii_letters + string.digits  
 
-    # Add special characters if required
-    if use_special_chars:
-        password_store += string.punctuation
-
-    # Ensure the password is strong and meets length requirement
     if length < 1:
         raise ValueError("Password length must be at least 1")
     
     # Generate a random password
-    password = ''.join(random.sample(password_store, length))  # Sample without replacement
-
+    password = ''.join(random.sample(password_store, length))  
     return password
-
-# Get user-defined criteria
 try:
-    user_length = int(input("Enter desired password length: "))  # Get the length from the user
-    include_special = input("Include special characters? (y/n): ").lower() == 'y'  # Yes/No for special characters
-
-    # Generate the password based on user input
-    generated_password = generate_password(user_length, include_special)
-
-    print(f"Generated Password: {generated_password}")  # Display the generated password
-
-except ValueError as e:
-    print(f"Error: {e}")  # Handle invalid input for password length
+    user_length = int(input("Enter desired password length: "))  
+    generated_password = generate_password(user_length)
+    print(f"Generated Password: {generated_password}") 
+except ValueError:
+    print("Invalid value!") 
