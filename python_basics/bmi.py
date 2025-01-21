@@ -13,12 +13,20 @@ def categorize_bmi(bmi):
         return "Obese"
 
 # User Input
-weight = float(input("Enter your weight in kilograms: "))
-height = float(input("Enter your height in meters: "))
+try:
+    weight = float(input("\nEnter your weight in kilograms: "))
 
-# Calculation
-bmi = calculate_bmi(weight, height)
-category = categorize_bmi(bmi)
+    height = float(input("Enter your height in meters: "))
+    if height <= 0:
+        print("Your height can't be a zero!")
 
-# Output
-print(f"Your BMI is {bmi:.2f}, which is considered '{category}'.")
+    if height > 0:
+      
+        bmi = calculate_bmi(weight, height)
+        category = categorize_bmi(bmi)
+        print(f"Your BMI is {bmi:.2f}, which is considered '{category}'.")
+
+except ValueError:
+    print("Invalid height or weight!")
+
+

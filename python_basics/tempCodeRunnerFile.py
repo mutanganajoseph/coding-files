@@ -1,3 +1,8 @@
- #  # Add special characters if required
-   #  if use_special_chars:
-   #      password_store += string.punctuation
+
+name = input("Search By Name: ").strip()
+
+for user in users:
+    if user['Name'] == name:
+        print(f"{user['Name']} {user['Number']}")
+    else:
+        print(f"{name} Not Found.")
