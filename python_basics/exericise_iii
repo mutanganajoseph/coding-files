@@ -1,0 +1,21 @@
+import numpy as np 
+
+def area_of_paralelogram(v,u):
+    return np.linalg.norm(np.cross(v,u))
+
+def volume_of_parallelopiped(u,v,w):
+    return abs(np.dot(u, np.cross(v,w)))
+
+
+#Example 
+
+u = np.array([1, 2, 3])
+v = np.array([4, 5, 6])
+w = np.array([7, 8, 9])
+
+# Compute the area and volume
+area = area_of_paralelogram(u, v)  
+volume = volume_of_parallelopiped(u, v, w)
+
+print(f"Parallelogram Area: {area:.2f}")
+print("Parallelepiped Volume:", volume)
