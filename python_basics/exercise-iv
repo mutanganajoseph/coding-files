@@ -18,9 +18,10 @@ def permutation_sign(n):
     
     return len(perms), sign_dict
 
-num_permutations, signs = permutation_sign(3)
+n = int(input("Enter a number: "))
+
+num_permutations, signs = permutation_sign(n)
 
 print(f"Total permutations: {num_permutations}")
-
 for perm, sign in signs.items():
     print(f"{perm}: Sign = {sign}")

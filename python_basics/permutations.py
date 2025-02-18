@@ -19,7 +19,6 @@ try:
         print(f"\nHere is {math.factorial(n)} Permutations.\n")
         
         for perm in permutations:
-            
             print(perm)
         
     if n > 7:
