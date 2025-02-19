@@ -30,7 +30,8 @@ try:
             print(f"{perm} | Jumps: {jumps} | Sign of Jumps: {jump_sign}")
         
     if n > 7:
-        print("\nThe Number You Enter is Very Large. Try n>0 , n<=7\n")
+        print("\nThe Number You Enter is Very Large. Try n>0 , n<=7 Or You wish to continue with that one Y/N\n")
+        
 
 except ValueError:
     _ = os.system("clear")
