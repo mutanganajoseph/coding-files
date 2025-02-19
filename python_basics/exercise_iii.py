@@ -1,8 +1,6 @@
 import numpy as np
 
-
 area_of_paralelogram = lambda v, u: np.linalg.norm(np.cross(v, u))
-
 
 volume_of_parallelopiped = lambda u, v, w: abs(np.dot(u, np.cross(v, w)))
 
