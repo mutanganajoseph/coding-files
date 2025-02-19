@@ -10,3 +10,4 @@ B = np.array([1,1,1])
 
 det_A = np.linalg.norm(A)
 print(A.shape)
+
