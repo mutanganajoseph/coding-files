@@ -1,6 +1,6 @@
 marks = 0
 
-print("Welcome to the quiz! \n")
+print("\n\nWelcome to the quiz! \n")
 
 # Question 1
 print("What is the sum of 20 + 20?")
@@ -44,4 +44,4 @@ while True:
     else:
         print("Wrong Choice! Please enter 1, 2, or 3.")
 
-print(f"\nYour marks: {marks}")
+print(f"\nYour marks: {marks}\n")
