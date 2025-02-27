@@ -2,7 +2,7 @@
 import numpy as np 
 import itertools
 
-A = (1,2,3,1).
+A = (1,2,3,1)
 
 
 jumps = 0
@@ -17,4 +17,3 @@ for i in range(len(A)-1):
     else:
         sign = "-"
 print(A, jumps, sign)
-print()
