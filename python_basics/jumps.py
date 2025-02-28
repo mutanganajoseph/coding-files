@@ -18,19 +18,36 @@
 #         sign = "-"
 # print(A, jumps, sign)
 
-try:
-    n = int(input("Enter a number: "))
+# try:
+#     n = int(input("Enter a number: "))
+#     factorial = 1
+#     if n == 0:
+#         print(factorial)
+#     if n < 0:
+#         print("No factorila for number less than zero")
+#     if n > 0:
+
+#         while n >=1 :
+#             factorial = factorial * n
+#             n-=1
+
+#         print(factorial)
+# except ValueError:
+#     print("Invalid Number.")
+
+
+def displayFactorial(n):
     factorial = 1
-    if n == 0:
-        print(factorial)
-    if n < 0:
-        print("No factorila for number less than zero")
-    if n > 0:
+    while n >=1:
+        factorial = factorial * n
+        n-=1
+    return factorial
 
-        while n >=1 :
-            factorial = factorial * n
-            n-=1
 
-        print(factorial)
-except ValueError:
-    print("Invalid Number.")
+number = int(input("Enter a number: "))
+if number < 0:
+    print("No Factorial for negative numbers")
+elif number == 0:
+    print(displayFactorial(number))
+else:
+    print(displayFactorial(number))
