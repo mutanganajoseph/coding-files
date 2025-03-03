@@ -1,34 +1,17 @@
-import numpy as np
+import numpy as np 
 
-def hill_cipher_encrypt(message, matrix):
-    # Convert letters to numbers (A=0, B=1, ..., Z=25)
-    message = message.upper().replace(" ", "")  # Ensure uppercase and no spaces
-    if len(message) % 2 == 1:
-        message += "X"  # Padding with 'X' if odd length
+letter =np.array( ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"])
+number = np.array(range(1, len(letter)+1))
 
-    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    letter_to_num = {letter: i for i, letter in enumerate(alphabet)}
-    num_to_letter = {i: letter for i, letter in enumerate(alphabet)}
+text = input("Enter A text: ").split()
 
-    # Convert message to number pairs
-    num_message = [letter_to_num[char] for char in message]
-    
-    # Reshape into 2-row vectors
-    num_message = np.array(num_message).reshape(-1, 2).T  # Shape (2, n)
+text = np.array([text])
 
-    # Encrypt using matrix multiplication
-    matrix = np.array(matrix)
-    encrypted_nums = np.dot(matrix, num_message) % 26  # Mod 26
+matrix = np.array([[1,-1],[-5,2]])
 
-    # Convert back to letters
-    encrypted_text = "".join(num_to_letter[num] for num in encrypted_nums.T.flatten())
-
-    return encrypted_text
-
-# Given matrix
-matrix = [[1, -1], [-5, 2]]
-
-# Encrypt "RESEARCH"
-message = "RESEARCH"
-encrypted_message = hill_cipher_encrypt(message, matrix)
-print("Encrypted Message:", encrypted_message)
+for i in text:
+    for j in range(1, len(letter)):
+        if i == letter[j]:
+            for h in range(1, len(number)):
+                if letter[j] == number[h]:
+                    print(f"Text Encoded by {number[h]}")
