@@ -806,4 +806,4 @@ try:
     generated_password = generate_password(user_length)
     print(f"Generated Password: {generated_password}") 
 except ValueError:
-    print("Invalid value!") 
+    print("Invalid Length!") 
