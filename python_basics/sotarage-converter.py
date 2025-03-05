@@ -1,14 +1,57 @@
-def storageConverter(number):
-    byte = 8
-    kilobyte = 1024 #bytes
-    megabyte = 1024 #kilobyte
-    gygabyte = 1024 #megabytes
-    telabyte = 1024 #gygabytes
-    hexabyte = 1023 #telabytes
-    zetabyte = 1024 #hexabytes
-    return zetabyte * number,hexabyte * number,telabyte * number ,gygabyte * number ,megabyte * number ,kilobyte*number ,byte * number
+
+def home(choice):
+   print("\nSelect Opartion \n\n1.Byte       (B)\n2.Kylobite  (KB)\n3.Megabytes (MB)\n4.Gigabyte  (GB)\n5.Terabyte  (TB)\n6.Petabyte  (PB)\n7.Exabyte   (EB)\n8.Zettabyte (ZB)\n9.Yottabyte (YB)")
+
+    return choice
+
+def byte(choice):
+   print("\nConvert Byte to: \n1.Kylobite  (KB)\n2.Megabytes (MB)\n3.Gigabyte  (GB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
+
+    return choice 
+
+def kilobyte(choice):
+   print("\nConvert KiloByte to: \n1.Byte  (B)\n2.Megabytes (MB)\n3.Gigabyte  (GB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
+     
+     return choice
+
+def megabyte(choice):
+   print("\nConvert MegaByte to: \n1.Byte  (KB)\n2.Kilobyte (KB)\n3.Gigabyte  (GB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
+
+    return choice 
+
+def gigabyte(choice):
+   print("\nConvert GigaByte to: \n1.Byte  (B)\n2.Kilobytes (KB)\n3.Megabyte  (MB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
+     
+     return choice
+
+def terabyte(choice):
+   print("\nConvert TeraByte to: \n1.Byte  (KB)\n2.Kilobyte (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
+
+    return choice 
+
+def petabyte(choice):
+   print("\nConvert PetaByte to: \n1.Byte  (B)\n2.Kilobytes (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Terabyte  (TB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
+     
+     return choice
 
 
-number = int(input())
+def exabyte(choice):
+   print("\nConvert exaByte to: \n1.Byte  (B)\n2.Kilobytes (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.petaabyte  (PB)\n6.Terabyte   (TB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
+     
+     return choice
 
-print(storageConverter(number))
+ def zettabyte(choice):
+   print("\nConvert zettaByte to: \n1.Byte  (B)\n2.Kilobytes (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.petaabyte  (PB)\n6.Terabyte   (TB)\n7.Petabyte (PB)\n8.Yottabyte (YB)")
+     
+     return choice    
+
+def yottabyte(choice):
+   print("\nConvert PetaByte to: \n1.Byte  (B)\n2.Kilobytes (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.petaabyte  (PB)\n6.Terabyte   (TB)\n7.Petabyte (PB)\n8.Zettabyte (ZB)")
+     
+     return choice    
+
+
+
+def main():
+    home()
+    choice = input("")
