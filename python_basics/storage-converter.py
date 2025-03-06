@@ -1,102 +1,54 @@
+class StorageConverter:
+    def __init__(self):
+        self.units = {
+            "B": 1,
+            "KB": 1024,
+            "MB": 1024 ** 2,
+            "GB": 1024 ** 3,
+            "TB": 1024 ** 4,
+            "PB": 1024 ** 5,
+            "EB": 1024 ** 6,
+            "ZB": 1024 ** 7,
+            "YB": 1024 ** 8
+        }
 
-def home():
-    print("\nSelect Opartion \n\n1.Byte       (B)\n2.Kylobyte  (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Terabyte  (TB)\n6.Petabyte  (PB)\n7.Exabyte   (EB)\n8.Zettabyte (ZB)\n9.Yottabyte (YB)")
-    return 
+    def convert(self, from_unit, to_unit, value):
+        """Convert value from one unit to another."""
+        if from_unit not in self.units or to_unit not in self.units:
+            raise ValueError("Invalid units")
+        # Convert to bytes first, then to the target unit
+        value_in_bytes = value * self.units[from_unit]
+        return value_in_bytes / self.units[to_unit]
 
-def byte():
-    while True:
-        print("\nConvert Byte to: \n\n1.Kylobyte  (KB)\n2.Megabyte  (MB)\n3.Gigabyte  (GB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
-        return  
-
-def kilobyte():
-    while True:
-        print("\nConvert KiloByte to: \n\n1.Byte      (B)\n2.Megabyte  (MB)\n3.Gigabyte  (GB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
-        return 
-
-def megabyte():
-    while True:
-        print("\nConvert MegaByte to: \n\n1.Byte      (B)\n2.Kilobyte  (KB)\n3.Gigabyte  (GB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
-        return  
-
-def gigabyte():
-    while True:
-        print("\nConvert GigaByte to: \n\n1.Byte      (B)\n2.Kilobyte  (KB)\n3.Megabyte  (MB)\n4.Terabyte  (TB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
-        return 
-
-def terabyte():
-    while True:
-        print("\nConvert TeraByte to: \n\n1.Byte       (B)\n2.Kilobyte  (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Petabyte  (PB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
-        return  
-
-def petabyte():
-    while True:
-        print("\nConvert PetaByte to: \n\n1.Byte      (B)\n2.Kilobyte  (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Terabyte  (TB)\n6.Exabyte   (EB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
-        return 
-
-
-def exabyte():
-    while True:
-        print("\nConvert exaByte to: \n\n1.Byte       (B)\n2.Kilobyte  (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Terabyte  (TB)\n6.Petabyte  (PB)\n7.Zettabyte (ZB)\n8.Yottabyte (YB)")
-        return 
-
-def zettabyte():
-    while True:
-        print("\nConvert zettaByte to: \n\n1.Byte       (B)\n2.Kilobyte  (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Terabyte  (TB)\n6.Petabyte  (PB)\n7.Exabyte   (EB)\n8.Yottabyte (YB)")
-        return     
-
-def yottabyte():
-    while True:
-
-        print("\nConvert YottaByte to: \n\n1.Byte      (B)\n2.Kilobyte  (KB)\n3.Megabyte  (MB)\n4.Gigabyte  (GB)\n5.Terabyte  (TB)\n6.Petabyte  (PB)\n7.Exabyte   (EB)\n8.Zettabyte (ZB)")
-        return     
-
+    def display_units(self):
+        """Displays all available units."""
+        return list(self.units.keys())
 
 
 def main():
+    converter = StorageConverter()
+
+    print("\nAvailable units: ", converter.display_units())
     while True:
+        try:
+            # Get user input for from_unit, to_unit, and value
+            from_unit = input("Enter the source unit (e.g., 'MB'): ").upper()
+            to_unit = input("Enter the target unit (e.g., 'GB'): ").upper()
+            value = float(input(f"Enter the value to convert from {from_unit} to {to_unit}: "))
 
-        home()
-        choice = input("\n> ").lower()
-        if choice == "1":
-            byte()
-            choice = input("\n> ").lower()
-        elif choice == "2":
-            kilobyte()
-            choice = input("\n> ").lower()
-        elif choice == "3":
-            megabyte()
-            choice = input("\n>").lower()
+            # Perform the conversion
+            result = converter.convert(from_unit, to_unit, value)
+            print(f"{value} {from_unit} is {result} {to_unit}\n")
 
-        elif choice == "4":
-            gigabyte()
-            choice = input("\n> ").lower()
+        except ValueError as ve:
+            print(f"Error: {ve}")
+            continue  # If input is invalid, restart the loop
 
-        elif choice == "5":
-            terabyte()
-            choice = input("\n> ").lower()
-
-        elif choice == "6":
-            petabyte()
-            choice = input("\n >").lower()
-            
-        elif choice == "7":
-            exabyte()
-            choice = input("\n> ").lower()
-        elif choice == "8":
-            zettabyte()
-            choice = input("\n> ").lower()
-        elif choice == "9":
-            yottabyte()
-            choice = input("\n> ").lower()
-        elif choice == "exit" or choice == "quit":
+        # Ask if the user wants to continue
+        continue_choice = input("Do you want to make another conversion? (y/n): ").lower()
+        if continue_choice != "y":
             break
 
-        else:
-            print("Invalid choice. ")
-            
 
-
-
-
-if __name__ =="__main__":
+if __name__ == "__main__":
     main()
